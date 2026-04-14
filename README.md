@@ -1,13 +1,18 @@
-# Project_transportation
+# Project Title: End-to-End Transportation Data Engineering Pipeline
+This project demonstrates an enterprise-grade data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). The primary goal was to modernize a legacy procedural pipeline for a transportation company (Good Cabs) to improve data delivery speeds and regional analytical capabilities.
 
-A Databricks-based data pipeline project designed to manage and process transportation data using a medallion architecture (Bronze, Silver, Gold layers).
+## Key Features & Technologies
+- Declarative Pipelines (SDP): Transitioned from manual, imperative orchestration to a declarative approach, allowing the system to handle execution plans, dependencies, and incremental processing automatically.
 
-## 📋 Overview
+## Medallion Architecture: 
+Implemented a robust data architecture using:
+- Bronze Layer: Raw data ingestion from Amazon S3 using Auto Loader for incremental processing.
+- Silver Layer: Data cleaning, transformation, and business logic application.
+- Gold Layer: BI-ready aggregated data tailored for regional analytics.
 
-This project implements a scalable data pipeline on Databricks with a three-layer medallion architecture:
-- **Bronze Layer**: Raw data ingestion
-- **Silver Layer**: Cleaned and validated data
-- **Gold Layer**: Business-ready aggregated data
+## Data Governance & Access: 
+- Utilized Unity Catalog for centralized access management, enabling Role-Based Access Control (RBAC) for regional managers 
+- Unified Analytics: Leveraged built-in AI features (Genie) for natural language data querying and rapid insights.
 
 ## 🛠️ Technology Stack
 
