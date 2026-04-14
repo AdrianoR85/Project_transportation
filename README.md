@@ -2,7 +2,21 @@
 This project demonstrates an enterprise-grade data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). The primary goal was to modernize a legacy procedural pipeline for a transportation company (Good Cabs) to improve data delivery speeds and regional analytical capabilities.
 
 ## Key Features & Technologies
-- Declarative Pipelines (SDP): Transitioned from manual, imperative orchestration to a declarative approach, allowing the system to handle execution plans, dependencies, and incremental processing automatically.
+Declarative Pipelines (SDP): 
+  - Transitioned from manual,
+  - imperative orchestration to a declarative approach,
+  - allowing the system to handle execution plans,
+  - dependencies,
+  - incremental processing automatically.
+
+## Data Source
+The raw data used in this project is stored in Amazon S3, serving as the ingestion layer for the pipeline.
+Databricks Auto Loader is used to incrementally ingest data into the Bronze layer.
+
+- Storage: Amazon S3
+- Format: CSV
+- Ingestion: Auto Loader (incremental)
+
 
 ## Medallion Architecture: 
 Implemented a robust data architecture using:
