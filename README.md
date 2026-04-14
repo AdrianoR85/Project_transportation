@@ -1,4 +1,4 @@
-# Project Title: End-to-End Transportation Data Engineering Pipeline
+# End-to-End Transportation Data Engineering Pipeline
 This project demonstrates an enterprise-grade data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). The primary goal was to modernize a legacy procedural pipeline for a transportation company (Good Cabs) to improve data delivery speeds and regional analytical capabilities.
 
 ## Key Features & Technologies
@@ -34,6 +34,7 @@ Implemented a robust data architecture using:
 - **Notebooks**: Jupyter Notebooks
 - **Data Platform**: Databricks
 - **Architecture**: Medallion Architecture (Delta Lake)
+- **Amazon S3**: Data Source
 
 ## 📁 Project Structure
 ```
@@ -52,10 +53,4 @@ Project_transportation /
 - Databricks workspace access
 - Apache Spark cluster running
 - Python 3.x environment
-
-### Setup Instructions
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/AdrianoR85/Project_transportation.git
-   cd Project_transportation
+- AWS Account (free)
