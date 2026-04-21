@@ -46,6 +46,47 @@ Project_transportation /
   |__ .gitignore # Git ignore rules
 ```
 
+## 🚀 Step-by_step
+
+### 1. Create a GitHub Repository
+First, create a repository on github,then go to Databricks.
+
+### 2. Open Databricks Workspace:
+The Workspace is where you organize, write, and run your notebooks.
+  - Go to Create → Git Folder
+  - Fill in the repository details
+  - Open the created folder
+  - Create a new Notebook
+
+ #### 🧩 Create a Widget (User Input)
+  ```python
+      dbutils.widgets.text("catalog_name", "transportation", "Catalog Name")
+      catalog_name = dbutils.widgets.get("catalog_name") 
+      catalog_name
+  ```
+  ##### What this does:
+  `dbutils.widgets.text(name, defaultValue, label)` creates an input box in the UI.
+  - name → variable used in code
+  - defaultValue → default value shown
+  - label → display name in the UI 
+
+  #### 🏗️ Create Catalog
+  ```spark 
+  spark.sql(f"CREATE CATALOG IF NOT EXISTS {catalog_name}")
+  ```
+  #### 🗂️ Create Schemas
+  ```sql
+  spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.bronze;")
+  spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.silver;")
+  spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.gold;")
+  ```
+  ##### What this does:
+  - `spark.sql()` is a method used in Apache Spark to run **SQL queries directly on Spark.**
+   - It lets you write SQL (like `SELECT`, `CREATE`, `INSERT`) and execute it on your data using Spark.
+   - **Catalog** is like a main folder that contains databases (schemas), tables, and other data assets.
+   - In this case, it create a **catalog** with the value set at **catalog_name**, and create **Schemas** inside the catalog_name.
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
