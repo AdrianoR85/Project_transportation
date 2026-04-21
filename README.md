@@ -104,7 +104,7 @@ Bucket
          |_____ Data + Metabata.
 ```
 
-#### 🚢 How to create a Bucket:
+#### **🚢 How to create a Bucket:**
 1. Gi to **AWS Console**
 2. Open S3
 3. Click **"Create bucket"**
@@ -114,18 +114,18 @@ Bucket
 5. Keep **Block all public access** enabled (recommended)
 6. Click **Create bucket**
 
-#### 📁 How to create a folder:
+#### **📁 How to create a folder:**
 1. Open your bucket in S3
 2. Click **Creata folder**
 3. Enter a name in **Folder name**
 4. Click **Create**
 
-#### 📄 How to insert files:
+#### **📄 How to insert files:**
 1. Open your folder in bucket
 2. Drag and Drop your files or click **Add files** to insert the files.
 3. Click **Upload**
 
-#### 🔗 How to connect to Databricks:
+#### **🔗 How to connect to Databricks:
 1. Go to Catalog in Databricks
 2. Click **External locations** in ⚙️
 3. Click **Create external location**
@@ -158,7 +158,7 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
   - Supportes streaming + batch
   - Enforces data quality rules 
 
-#### Create a Pipeline and folders.
+#### **👷Create a Pipeline and folders:**
   1. Click **Jobs & Pipelines**
   2. Click **ETL pipeline**
   3. Enter a name for pipeline
@@ -176,7 +176,42 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
 2. Rename the file to city.py
 3. Insert into the city.py the code below:
 ```
+from pyspark import pipelines as dp
+from pyspark.sql.functions import col, current_timestamp
+from config import PATHS
+
+SOURCE_PATH = PATHS["city"]
+
+@dp.materialized_view(
+    name="transportation.bronze.city",
+    comment="City Raw Data Processing",
+    table_properties={
+        "quality": "bronze",
+        "layer": "bronze",
+        "source_format": "csv",
+        "delta.enableChangeDataFeed": "true",
+        "delta.autoOptimize.optimizeWrite": "true",
+        "delta.autoOptimize.autoCompact": "true"
+    }
+)
+def city_bronze():
+    df = spark.read.format("csv")\
+        .option("header", "true")\
+        .option("inferSchema", "true")\
+        .option("mode", "PERMISSIVE")\
+        .option("mergeSchema", "true")\
+        .option("columnNameOfCorruptRecord", "_corrupt_record")\
+        .load(SOURCE_PATH)
+    
+    df = df.withColumn("file_name", col("_metadata.file_path"))\
+        .withColumn("ingest_datetime", current_timestamp())
+    
+    return df
 ```
+#### 🟩 Explain the code
+
+
+---
 
 ## 🚀 Getting Started
 
