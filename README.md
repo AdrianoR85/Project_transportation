@@ -48,10 +48,12 @@ Project_transportation /
 
 ## 🚀 Step-by_step
 
-### 1. Create a GitHub Repository
+### 1️⃣ Create a GitHub Repository
 First, create a repository on github,then go to Databricks.
 
-### 2. Open Databricks Workspace:
+--- 
+
+### 2️⃣ Open Databricks Workspace:
 The Workspace is where you organize, write, and run your notebooks.
   - Go to Create → Git Folder
   - Fill in the repository details
@@ -64,7 +66,7 @@ The Workspace is where you organize, write, and run your notebooks.
       catalog_name = dbutils.widgets.get("catalog_name") 
       catalog_name
   ```
-  ##### What this does:
+  ##### What this does
   `dbutils.widgets.text(name, defaultValue, label)` creates an input box in the UI.
   - name → variable used in code
   - defaultValue → default value shown
@@ -75,21 +77,24 @@ The Workspace is where you organize, write, and run your notebooks.
   spark.sql(f"CREATE CATALOG IF NOT EXISTS {catalog_name}")
   ```
   #### 🗂️ Create Schemas
+  
   ```sql
   spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.bronze;")
   spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.silver;")
   spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.gold;")
   ```
-  ##### What this does:
-  - `spark.sql()` is a method used in Apache Spark to run **SQL queries directly on Spark.**
-   - It lets you write SQL (like `SELECT`, `CREATE`, `INSERT`) and execute it on your data using Spark.
-   - **Catalog** is like a main folder that contains databases (schemas), tables, and other data assets.
-   - In this case, it create a **catalog** with the value set at **catalog_name**, and create **Schemas** inside the catalog_name.
+  ##### What this does
+  - ```spark.sql()``` is a method used in Apache Spark to run **SQL queries directly on Spark.**
+  - It lets you write SQL (like `SELECT`, `CREATE`, `INSERT`) and execute it on your data using Spark.
+  - **Catalog** is like a main folder that contains databases (schemas), tables, and other data assets.
+  - In this case, it create a **catalog** with the value set at **catalog_name**, and create **Schemas** inside the catalog_name.
 
-### 3. S3 Bucket Setup:
+--- 
+
+### 3️⃣ S3 Bucket Setup
 An S3 bucket is a container used to store files (objects) in the cloud.
 
-#### How it's structured
+#### 🏗️ How it's structured
 Inside the Amazon S3:
 
 ```
@@ -99,7 +104,7 @@ Bucket
          |_____ Data + Metabata.
 ```
 
-#### How to create a Bucket:
+#### 🚢 How to create a Bucket:
 1. Gi to **AWS Console**
 2. Open S3
 3. Click **"Create bucket"**
@@ -109,18 +114,18 @@ Bucket
 5. Keep **Block all public access** enabled (recommended)
 6. Click **Create bucket**
 
-#### How to create a folder:
+#### 📁 How to create a folder:
 1. Open your bucket in S3
 2. Click **Creata folder**
 3. Enter a name in **Folder name**
 4. Click **Create**
 
-#### How to insert files:
+#### 📄 How to insert files:
 1. Open your folder in bucket
 2. Drag and Drop your files or click **Add files** to insert the files.
 3. Click **Upload**
 
-#### How to connect to Databricks:
+#### 🔗 How to connect to Databricks:
 1. Go to Catalog in Databricks
 2. Click **External locations** in ⚙️
 3. Click **Create external location**
@@ -132,6 +137,46 @@ Bucket
 9. Enable *I acknowlegde...* in the bottom of the page
 10. click **Create stack**
 
+---
+
+### 4️⃣ Create a Pipeline and Medals Layers folders.
+Jobs and Pipeline are both used to automated data processing, but they serve slightly different purpose
+
+**Jobs** is a way to run tasks automatically (like notebook, scripts, or queries).
+- What a Job can do:
+  - Run a notebook or Python script
+  - Execute SQL queries
+  - Schedule runs (daily, hourly, etc.)
+  - Chain multiple task (workflow / DAG)    
+
+**Pipeline** is a declarative way to build data pipelines.
+- You define *what* should happen, not how to run it.
+- What a Pipeline does:
+  - Automatically manages data flow
+  - Handles dependencies between tables
+  - Tracks data lineage
+  - Supportes streaming + batch
+  - Enforces data quality rules 
+
+#### Create a Pipeline and folders.
+  1. Click **Jobs & Pipelines**
+  2. Click **ETL pipeline**
+  3. Enter a name for pipeline
+  4. In **workspace** (**workspace**.default) select the project catalog name
+  5. In **default** (workspace.**default**) select the bronze schema
+  6. Enable Lakeflow Pipeline Editor
+  7. Click **Start with an empty file**
+  8. Click **Browse** (enable python), Select the project folder, and click **Select**
+  9. It will create a folder named transformation. Inside it create 3 folder (bronze, silver and gold)    
+
+---
+
+### 5️⃣ City Table: Bronze Layers
+1. Drag and Drop my_transformation.py file into the bronze folder.
+2. Rename the file to city.py
+3. Insert into the city.py the code below:
+```
+```
 
 ## 🚀 Getting Started
 
