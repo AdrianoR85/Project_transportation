@@ -86,6 +86,52 @@ The Workspace is where you organize, write, and run your notebooks.
    - **Catalog** is like a main folder that contains databases (schemas), tables, and other data assets.
    - In this case, it create a **catalog** with the value set at **catalog_name**, and create **Schemas** inside the catalog_name.
 
+### 3. S3 Bucket Setup:
+An S3 bucket is a container used to store files (objects) in the cloud.
+
+#### How it's structured
+Inside the Amazon S3:
+
+```
+Bucket
+|___Folder
+    |____Object(file or folder)
+         |_____ Data + Metabata.
+```
+
+#### How to create a Bucket:
+1. Gi to **AWS Console**
+2. Open S3
+3. Click **"Create bucket"**
+4. Fill in:
+   - **Bucket name**: must be globally unique
+   - **Region**: Choose close to your data processing
+5. Keep **Block all public access** enabled (recommended)
+6. Click **Create bucket**
+
+#### How to create a folder:
+1. Open your bucket in S3
+2. Click **Creata folder**
+3. Enter a name in **Folder name**
+4. Click **Create**
+
+#### How to insert files:
+1. Open your folder in bucket
+2. Drag and Drop your files or click **Add files** to insert the files.
+3. Click **Upload**
+
+#### How to connect to Databricks:
+1. Go to Catalog in Databricks
+2. Click **External locations** in ⚙️
+3. Click **Create external location**
+4. Click **AWS Quickstart (Recommendend)** and after **Next**
+5. Enter the **Bucket Name** (URL: s3://your_bucket_name)
+6. Click **Generate new token** and copy it.
+7. Click **Launch in Quickstart**
+8. On the window that opened, past the token in **Databricks Pernsonal Access Token**,
+9. Enable *I acknowlegde...* in the bottom of the page
+10. click **Create stack**
+
 
 ## 🚀 Getting Started
 
