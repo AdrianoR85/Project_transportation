@@ -174,40 +174,8 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
 ### 5️⃣ City Table: Bronze Layers
 1. Drag and Drop my_transformation.py file into the bronze folder.
 2. Rename the file to city.py
-3. Insert into the city.py the code below:
-```
-from pyspark import pipelines as dp
-from pyspark.sql.functions import col, current_timestamp
-from config import PATHS
+3. Insert into the city.py this [code](./transportation_pipeline/transformations/bronze/city.py) 
 
-SOURCE_PATH = PATHS["city"]
-
-@dp.materialized_view(
-    name="transportation.bronze.city",
-    comment="City Raw Data Processing",
-    table_properties={
-        "quality": "bronze",
-        "layer": "bronze",
-        "source_format": "csv",
-        "delta.enableChangeDataFeed": "true",
-        "delta.autoOptimize.optimizeWrite": "true",
-        "delta.autoOptimize.autoCompact": "true"
-    }
-)
-def city_bronze():
-    df = spark.read.format("csv")\
-        .option("header", "true")\
-        .option("inferSchema", "true")\
-        .option("mode", "PERMISSIVE")\
-        .option("mergeSchema", "true")\
-        .option("columnNameOfCorruptRecord", "_corrupt_record")\
-        .load(SOURCE_PATH)
-    
-    df = df.withColumn("file_name", col("_metadata.file_path"))\
-        .withColumn("ingest_datetime", current_timestamp())
-    
-    return df
-```
 #### 🟩 Explain the code
 
 
