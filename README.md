@@ -176,30 +176,9 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
 2. Rename the file to city.py
 3. Insert into the city.py this [code](./transportation_pipeline/transformations/bronze/city.py) 
 
-#### 🟩 Explain the code
+#### 🟩 Code Summary
 
-##### **📦 @dp.materialized_view**
-The @dp.materialized_view decorator (from Databricks Delta Live Tables) defines a managed, physical table that is automatically created and updated by the pipeline.
-Unlike a regular SQL view, a materialized view persists data to storage (Delta format), improving performance and enabling incremental processing.
-
-##### ⚙️ **Attributes explained:**
-- **name**: Defines the full table name (catalog.schema.table).
-- **comment**: Adds a human-readable description to the table metadata.
-- **table_properties**: A dictionary of configurations applied to the Delta table:
-- **quality / layer**: Custom metadata used to identify the pipeline layer (e.g., bronze).
-- **source_format**: Indicates the original data format (CSV in this case). Useful for documentation and governance.
-- **delta.enableChangeDataFeed = true**: Enables Change Data Feed (CDF), allowing you to track inserts, updates, and deletes for incremental processing.
-- **delta.autoOptimize.optimizeWrite = true**: Optimizes how data is written, reducing small files and improving read performance.
-- **delta.autoOptimize.autoCompact = true**: Automatically merges small files into larger ones after writing, maintaining performance over time.
-
-#### **📥 spark.read.format("csv")**
-This is the DataFrameReader API from Apache Spark used to load data into a DataFrame.
-- **format("csv")**: Specifies the input data format (CSV files).
-- **header = true**: Uses the first row of the file as column names.
-- **inferSchema = true**: Automatically detects column data types (e.g., integer, string).
-- **mode = "PERMISSIVE"**: Handles malformed rows by keeping them instead of failing the job.
-- **mergeSchema = true**: Allows schema evolution when reading multiple files with different structures.
-- **columnNameOfCorruptRecord = "_corrupt_record"**: Stores invalid or malformed rows in a dedicated column instead of discarding the
+This code defines a Bronze layer pipeline using Databricks and Apache Spark to ingest raw city data from CSV files. It reads the source data, automatically infers the schema, and safely handles malformed records. During ingestion, it enriches the dataset by adding metadata columns such as the source file path and the ingestion timestamp. The processed data is then stored as a Delta table using a materialized_view, which ensures the data is physically persisted, automatically updated, and optimized for performance. Additional table properties enable change tracking (Change Data Feed) and improve storage efficiency through optimized writes and auto-compaction. Overall, this code implements a scalable and reliable raw data ingestion step (Bronze layer), preparing the data for further transformations in downstream layers (Silver and Gold).
 
 
 ---
