@@ -178,6 +178,47 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
 
 #### 🟩 Explain the code
 
+##### **📦 @dp.materialized_view**
+The @dp.materialized_view decorator (from Databricks Delta Live Tables) defines a managed, physical table that is automatically created and updated by the pipeline.
+Unlike a regular SQL view, a materialized view persists data to storage (Delta format), improving performance and enabling incremental processing.
+
+###### **Attributes explained:**
+- **name**
+  Defines the full table name (catalog.schema.table).
+  Example: transportation.bronze.city
+- **comment**
+  Adds a human-readable description to the table metadata.
+- **table_properties**
+  A dictionary of configurations applied to the Delta table:
+- **quality / layer**
+  Custom metadata used to identify the pipeline layer (e.g., bronze).
+- **source_format**
+Indicates the original data format (CSV in this case). Useful for documentation and governance.
+- **delta.enableChangeDataFeed = true**
+Enables Change Data Feed (CDF), allowing you to track inserts, updates, and deletes for incremental processing.
+- **delta.autoOptimize.optimizeWrite = true**
+Optimizes how data is written, reducing small files and improving read performance.
+- **delta.autoOptimize.autoCompact = true**
+Automatically merges small files into larger ones after writing, maintaining performance over time.
+
+#### **📥 spark.read.format("csv")**
+This is the DataFrameReader API from Apache Spark used to load data into a DataFrame.
+- **format("csv")**
+Specifies the input data format (CSV files).
+
+##### ⚙️** Options explained**
+- **header = true**
+Uses the first row of the file as column names.
+- **inferSchema = true**
+Automatically detects column data types (e.g., integer, string).
+⚠️ Convenient, but can be slower for large datasets.
+- **mode = "PERMISSIVE"**
+Handles malformed rows by keeping them instead of failing the job.
+- **mergeSchema = true**
+Allows schema evolution when reading multiple files with different structures.
+- **columnNameOfCorruptRecord = "_corrupt_record"**
+Stores invalid or malformed rows in a dedicated column instead of discarding the
+
 
 ---
 
