@@ -174,7 +174,9 @@ Jobs and Pipeline are both used to automated data processing, but they serve sli
 ### 5️⃣ City Table: Bronze Layers
 1. Drag and Drop my_transformation.py file into the bronze folder.
 2. Rename the file to city.py
-3. Insert into the city.py this [code](./transportation_pipeline/transformations/bronze/city.py) 
+3. Insert into the city.py this [code](./transportation_pipeline/transformations/bronze/city.py)
+4. Click **Dry run**: It Check all definitions, types and references in this pipeline without creating or updating any tables.
+5. If everthing ok, click **Run Pipeline**
 
 #### 🟩 Code Summary
 
