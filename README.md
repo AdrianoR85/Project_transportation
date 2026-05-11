@@ -1,5 +1,5 @@
-# End-to-End Transportation Data Engineering Pipeline
-This project demonstrates an enterprise-grade data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). The primary goal was to modernize a legacy procedural pipeline for a transportation company (Good Cabs) to improve data delivery speeds and regional analytical capabilities.
+# End-to-End Bike Store Data Engineering Pipeline
+This project demonstrates a data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). Its primary goal is to modernize a legacy procedural pipeline for a Bike Store and prepare the data for machine learning and analytical workloads.
 
 ## Key Features & Technologies
 Declarative Pipelines (SDP): 
