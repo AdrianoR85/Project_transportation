@@ -48,12 +48,12 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 
 ## Project Steps
 
-### Design Data Architecture
+### 📐 Design Data Architecture
 - [ ] Choose the Data Management Approach
 - [ ] Design the Pipeline Architecture
 - [ ] Design the Medallion Layers
 
-### Project Initialization
+### 🚧 Project Initialization
 - [ ] Create Repository Structure
 - [ ] Configure Git Integration
 - [ ] Connect Source Data to Databricks
@@ -61,14 +61,14 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 - [ ] Create a Declarative Pipeline in Databricks
 - [ ] Define Project Naming Conventions
 
-### Build Bronze Layer
+### 🥉 Build Bronze Layer
 - [ ] Analysing: Source Systems
 - [ ] Coding: Data Ingestion
 - [ ] Validating: Data Completeness and Schema Consistency
 - [ ] Document: Draw Data flow (Draw.io/IA)
 - [ ] Commit Code into Git Repo
 
-### Build Silver Layer
+### 🥈 Build Silver Layer
 - [ ] Analysing: Explore & Understand Data
 - [ ] Document: Draw Data Integration (Draw.io/IA)
 - [ ] Coding: Data Cleansing and Transformation Logic
@@ -76,7 +76,7 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 - [ ] Document: Extend Data Flow (Draw.io/IA)
 - [ ] Commit Code into Git Repo
 
-### Build Gold Layer
+### 🥇 Build Gold Layer
 - [ ] Analysing: Business Entities and Metrics
 - [ ] Coding: Business-Level Data Integrations
 - [ ] Validating: Data Integration Checks
