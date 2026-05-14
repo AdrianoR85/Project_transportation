@@ -1,6 +1,7 @@
 # End-to-End Bike Store Data Engineering Lakehouse
 This project demonstrates a modern data engineering workflow built using Databricks and LakeFlow Spark Declarative Pipelines (SDP). The primary goal is to modernize a legacy procedural pipeline for a Bike Store and prepare high-quality data for analytics and machine learning workloads.
 
+**Topics:**
 - [Project Requirements](#project-requirements)
 - [Project Steps](#project-steps)
 - [Project Images](#project-images)
@@ -93,7 +94,10 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 - [ ] Document: Extend Data Flow (Draw.io/IA)
 - [ ] Commit Code into Git Repo
 
+[⤴️](#end-to-end-bike-store-data-engineering-lakehouse)
+
 ---
+
 ## Project Images
 
 ### Design the Pipeline Architecture
@@ -101,6 +105,8 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 
 ### Design the Medallion Layers
 <img src="assets/medal_design.png" />
+
+[⤴️](#end-to-end-bike-store-data-engineering-lakehouse)
 
 ---
 
@@ -150,39 +156,7 @@ Bucket
 7. Click **Launch in Quickstart**
 8. On the window that opened, past the token in **Databricks Pernsonal Access Token**,
 9. Enable *I acknowlegde...* in the bottom of the page
-10. click **Create stack**
+10. click **Create stack**  
 
----
-
-### 4️⃣ Create a Pipeline and Medals Layers folders.
-Jobs and Pipeline are both used to automated data processing, but they serve slightly different purpose
-
-**Jobs** is a way to run tasks automatically (like notebook, scripts, or queries).
-- What a Job can do:
-  - Run a notebook or Python script
-  - Execute SQL queries
-  - Schedule runs (daily, hourly, etc.)
-  - Chain multiple task (workflow / DAG)    
-
-**Pipeline** is a declarative way to build data pipelines.
-- You define *what* should happen, not how to run it.
-- What a Pipeline does:
-  - Automatically manages data flow
-  - Handles dependencies between tables
-  - Tracks data lineage
-  - Supportes streaming + batch
-  - Enforces data quality rules 
-
-#### **👷Create a Pipeline and folders:**
-  1. Click **Jobs & Pipelines**
-  2. Click **ETL pipeline**
-  3. Enter a name for pipeline
-  4. In **workspace** (**workspace**.default) select the project catalog name
-  5. In **default** (workspace.**default**) select the bronze schema
-  6. Enable Lakeflow Pipeline Editor
-  7. Click **Start with an empty file**
-  8. Click **Browse** (enable python), Select the project folder, and click **Select**
-  9. It will create a folder named transformation. Inside it create 3 folder (bronze, silver and gold)   
-
-## 🚀 Getting Started
+[⤴️](#end-to-end-bike-store-data-engineering-lakehouse)
 
