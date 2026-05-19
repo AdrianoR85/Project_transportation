@@ -80,8 +80,8 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 - [x] Commit Code into Git Repo
 
 ### 🥈 Build Silver Layer
-- [ ] Analysing: Explore & Understand Data
-- [ ] Document: Draw Data Integration (Draw.io/IA)
+- [x] Analysing: Explore & Understand Data
+- [x] Document: Draw Data Integration (Draw.io/IA)
 - [ ] Coding: Data Cleansing and Transformation Logic
 - [ ] Validating: Data Quality and Correctness
 - [ ] Document: Extend Data Flow (Draw.io/IA)
