@@ -3,13 +3,17 @@
 # ============================================================================
 
 from pyspark import pipelines as dp
-from pyspark.sql.functions import col, current_timestamp, trim, regexp_replace, initcap, when, coalesce, lit
+from pyspark.sql.functions import (
+    col, current_timestamp, trim, regexp_replace, initcap, 
+    when, coalesce, lit, row_number
+)
+from pyspark.sql import Window
 
 
 # Already standardized naming, just cleanup and select
 @dp.materialized_view(
     name="bike_store.silver.crm_customer",
-    comment="Cleaned and standardized CRM Customer",
+    comment="Cleaned and standardized CRM Customer with deduplication",
     table_properties={
         "quality": "silver",
         "layer": "silver",
@@ -70,6 +74,24 @@ def crm_customer_silver():
         .when((col("gender").isNull()) | (trim(col("gender")) == ""), lit("N/A"))
         .otherwise(standardize_text("gender"))
     )
+    
+    # Deduplication: Calculate completeness score (count non-N/A values)
+    completeness_cols = ["first_name", "last_name", "marital_status", "gender"]
+    completeness_expr = sum(
+        when(col(c) != "N/A", 1).otherwise(0) for c in completeness_cols
+    )
+    
+    df_silver = df_silver.withColumn("completeness_score", completeness_expr)
+    
+    # Window: Partition by customer_id, order by completeness and created_date
+    window_spec = Window.partitionBy("customer_id").orderBy(
+        col("completeness_score").desc(),
+        col("created_date").desc()
+    )
+    
+    # Rank and keep only the most complete record per customer_id
+    df_silver = df_silver.withColumn("rank", row_number().over(window_spec))
+    df_silver = df_silver.filter(col("rank") == 1).drop("rank", "completeness_score")
 
     # Add Silver metadata
     df_silver = df_silver.withColumn("ingest_timestamp", current_timestamp())

@@ -82,16 +82,16 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 ### 🥈 Build Silver Layer
 - [x] Analysing: Explore & Understand Data
 - [x] Document: Draw Data Integration (Draw.io/IA)
-- [ ] Coding: Data Cleansing and Transformation Logic
-- [ ] Validating: Data Quality and Correctness
-- [ ] Document: Extend Data Flow (Draw.io/IA)
-- [ ] Commit Code into Git Repo
+- [x] Coding: Data Cleansing and Transformation Logic
+- [x] Validating: Data Quality and Correctness
+- [x] Document: Extend Data Flow (Draw.io/IA)
+- [x] Commit Code into Git Repo
 
 ### 🥇 Build Gold Layer
 - [ ] Analysing: Business Entities and Metrics
+- [ ] Document: Draw Data Model of Star Schema (Draw.io/IA)
 - [ ] Coding: Business-Level Data Integrations
 - [ ] Validating: Data Integration Checks
-- [ ] Document: Draw Data Model of Star Schema (Draw.io/IA)
 - [ ] Document: Extend Data Flow (Draw.io/IA)
 - [ ] Commit Code into Git Repo
 
@@ -101,18 +101,6 @@ Train machine learning models using curated Gold-layer datasets to generate pred
 
 ## Project Images
 
-- [x] Document: Draw Data flow (Draw.io/IA)
-- [x] Commit Code into Git Repo
-
-### 🥈 Build Silver Layer
-- [ ] Analysing: Explore & Understand Data
-- [ ] Document: Draw Data Integration (Draw.io/IA)
-- [ ] Coding: Data Cleansing and Transformation Logic
-- [ ] Validating: Data Quality and Correctness
-- [ ] Document: Extend Data Flow (Draw.io/IA)
-- [ ] Commit Code into Git Repo
-
-$0
 ### Design the Pipeline Architecture
 <img src="assets/pipeline.png" />
 
